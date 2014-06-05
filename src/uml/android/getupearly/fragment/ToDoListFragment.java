@@ -1,15 +1,33 @@
 package uml.android.getupearly.fragment;
 
+import java.util.Calendar;
+
+import uml.android.getupearly.BaseApplication;
 import uml.android.getupearly.R;
-import uml.android.getupearly.R.layout;
+import uml.android.getupearly.Tool;
+import uml.android.getupearly.ViewPager4SameItem.OnPageSelectedListener;
+import uml.android.getupearly.adapter.CalendarViewPager;
 import uml.android.getupearly.template.BannerNoBackTemplate;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class ToDoListFragment extends Fragment {
+
+	private CalendarViewPager mCalendarViewPager;
+	private Button mPreButton;
+	private Button mNextButton;
+	private TextView mMonthNameTextView;
+	private OnPageSelectedListener mOnPageSelectedListener;
+	private LinearLayout monthTitleLayout;
 
 	public ToDoListFragment() {
 	}
@@ -21,6 +39,119 @@ public class ToDoListFragment extends Fragment {
 		BannerNoBackTemplate template = new BannerNoBackTemplate(getActivity(),
 				"To Do List");
 		template.addView(main);
-		return template.getWholeView();
+		View baseView = template.getWholeView();
+		mCalendarViewPager = (CalendarViewPager) baseView
+				.findViewById(R.id.calendar);
+		mPreButton = (Button) baseView.findViewById(R.id.btn_pre_month);
+		mNextButton = (Button) baseView.findViewById(R.id.btn_next_month);
+		mMonthNameTextView = (TextView) baseView
+				.findViewById(R.id.tv_month_name);
+		monthTitleLayout = (LinearLayout) baseView
+				.findViewById(R.id.ll_month_title);
+		initView();
+		return baseView;
 	}
+
+	private void initView() {
+		mPreButton.setVisibility(View.VISIBLE);
+		mNextButton.setVisibility(View.VISIBLE);
+		mMonthNameTextView.setText(Tool.getYearMonth(mCalendarViewPager
+				.getCurDate()));
+
+		for (int j = 0; j < CalendarViewPager.DAY_NUM_OF_WEEK; j++) {
+			TextView tv = new TextView(getActivity());
+			tv.setTextSize(20);
+			tv.setGravity(Gravity.CENTER);
+			tv.setTextColor(getActivity().getResources().getColor(
+					R.color.divider_of_dialog));
+			tv.setTextSize(16);
+			tv.setText(getWeekDayName(j));
+			LinearLayout.LayoutParams inner_params = new LinearLayout.LayoutParams(
+					Tool.getScreenW() / 8,
+					LinearLayout.LayoutParams.WRAP_CONTENT);
+			monthTitleLayout.addView(tv, inner_params);
+		}
+
+		mPreButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				mCalendarViewPager.setCurrentItem(mCalendarViewPager
+						.getCurrentItem() - 1);
+			}
+		});
+
+		mNextButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				mCalendarViewPager.setCurrentItem(mCalendarViewPager
+						.getCurrentItem() + 1);
+			}
+		});
+
+		mOnPageSelectedListener = new OnPageSelectedListener() {
+
+			@Override
+			public void onPageSelected(int position) {
+				mMonthNameTextView.setText(Tool.getYearMonth(mCalendarViewPager
+						.getCurDate()));
+				if (mCalendarViewPager.isFirstMonth()) {
+					mPreButton.setVisibility(View.INVISIBLE);
+				} else {
+					mPreButton.setVisibility(View.VISIBLE);
+				}
+
+				if (mCalendarViewPager.isLastMonth()) {
+					mNextButton.setVisibility(View.INVISIBLE);
+				} else {
+					mNextButton.setVisibility(View.VISIBLE);
+				}
+
+			}
+		};
+		mCalendarViewPager.setOnPageSelectedListener(mOnPageSelectedListener);
+		mCalendarViewPager.setOnDateClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Calendar cal = (Calendar) v.getTag();
+				Toast.makeText(BaseApplication.getContext(), "Click",
+						Toast.LENGTH_SHORT).show();
+				// updateToDoList(cal);
+			}
+		});
+
+	}
+
+	private String getWeekDayName(int index) {
+		String weekdayName = new String();
+		switch (index) {
+		case 0:
+			weekdayName = getString(R.string._sunday);
+			break;
+		case 1:
+			weekdayName = getString(R.string._monday);
+			break;
+		case 2:
+			weekdayName = getString(R.string._tuesday);
+			break;
+		case 3:
+			weekdayName = getString(R.string._wednesday);
+			break;
+		case 4:
+			weekdayName = getString(R.string._thursday);
+			break;
+		case 5:
+			weekdayName = getString(R.string._friday);
+			break;
+		case 6:
+			weekdayName = getString(R.string._saturday);
+			break;
+		default:
+			break;
+		}
+		return weekdayName;
+	}
+
 }
