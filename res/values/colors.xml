@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="theme_color">#41c5b4</color>
+    <color name="theme_bg">#FFFFFF</color>
+    <color name="theme_dark">#41c5b4</color>
+    <color name="theme_dark_pressed">#30ae9e</color>
+    <color name="banner_bottom_line">#36895e</color>
+    <color name="banner_top_line">#575453</color>
+    <color name="transparent">#00000000</color>
+    <!-- <color name="darkbg_text">#FFFFFF</color> -->
+    <color name="text_color_of_theme_color_bg">#FFFFFF</color>
+    <color name="text_color_of_dialog">#313131</color>
+    <color name="common_divider">#D8D8D8</color>
+    <color name="dialog_pressed">#eeeeee</color>
+    <!-- <color name="dark_divider">#353535</color> -->
+    <color name="divider_of_dialog">#a0a0a0</color>
+    <color name="pager_title_text_normal">#9A9A9A</color>
+    <color name="common_major_text">#313131</color>
+    <color name="common_second_text">#A0A0A0</color>
+    <color name="common_third_text">#dcdcdc</color>
+    <color name="common_forth_text">#dcdcdc</color>
+    <color name="listitem_pressed">#EEEEEE</color>
+    <color name="common_scrollbar">#C2C2C2</color>
+    <color name="common_btn_pressed">#30ae9e</color>
+    <color name="common_btn_text">#FFFFFF</color>
+    <!-- <color name="clickable_text_default">#4daf7c</color> -->
+    <color name="gray">#DEDEDE</color>
+    <color name="black">#000000</color>
+    <color name="dark_gray">#232323</color>
+    <color name="light_divider">#F0F0F0</color>
+    <color name="red">#ff0000</color>
+    <color name="white">#ffffff</color>
+    <color name="text_color_for_theme_bg">#ffffff</color>
+    <color name="text_or_line_color">#dcdcdc</color>
+    <color name="gray_bg">#f3f3f7</color>
+    <color name="habit_name_bg">#eeeeee</color>
+    <color name="text_line_color">#dcdcdc</color>
+    <color name="dark_yellow">#F5dd39</color>
+    <color name="light_yellow">#F7EA92</color>
+    <color name="text_color_half">#a0a0a0</color>
+    <color name="text_color">#313131</color>
+    <color name="clickable_text_default">#41C5B4</color>
+    <color name="clickable_text_pressed">#30AE9E</color>
+    <color name="reminder_checked_text_color">#3ecc9d</color>
+    <color name="warning_red">#f34522</color>
+    <color name="warning_light_red">#a34500</color>
+    <color name="setting_bg_color">#f3f3f7</color>
+    <color name="bg_color">#f3f3f7</color>
+    <color name="guide_1">#30a191</color>
+    <color name="guide_2">#30a9db</color>
+    <color name="guide_3">#e56442</color>
+    <color name="guide_4">#ffcf65</color>
+    <color name="guide_5">#904967</color>
+
+</resources>

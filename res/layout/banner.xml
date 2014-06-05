@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/banner"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/banner_height"
+    android:background="@color/theme_dark" >
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.01dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/banner_top_line" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:layout_alignParentBottom="true"
+        android:background="@color/banner_bottom_line" />
+
+    <LinearLayout
+        android:id="@+id/banner_back_view"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="@dimen/double_banner_height"
+        android:background="@drawable/bg_theme_dark_selector"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingRight="10dp" >
+
+        <View
+            android:id="@+id/ic_banner_bakc"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/ic_banner_back" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/banner_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="@string/app_name"
+        android:textColor="@color/text_color_of_theme_color_bg"
+        android:textSize="18sp"
+        android:layout_centerInParent="true" />
+
+    <ImageView
+        android:id="@+id/banner_more"
+        android:layout_width="@dimen/banner_height"
+        android:layout_height="@dimen/banner_height"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/bg_theme_dark_selector"
+        android:contentDescription="@string/app_name"
+        android:padding="10dp"
+        android:src="@drawable/ic_banner_more"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/banner_btn1"
+        android:layout_width="@dimen/banner_height"
+        android:layout_height="@dimen/banner_height"
+        android:layout_toLeftOf="@id/banner_more"
+        android:background="@drawable/bg_theme_dark_selector"
+        android:contentDescription="@string/app_name"
+        android:padding="10dp"
+        android:src="@drawable/ic_banner_add"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btn_banner_sure"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/bg_theme_dark_selector"
+        android:paddingLeft="13dp"
+        android:paddingRight="11dp"
+        android:text="@string/ok"
+        android:textColor="@color/text_color_for_theme_bg"
+        android:textSize="17sp"
+        android:visibility="gone" />
+
+</RelativeLayout>
