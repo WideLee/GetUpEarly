@@ -40,18 +40,17 @@ public class SignInHistoryFragment extends Fragment {
 
 	private void initView() {
 		ArrayList<Event> data = new ArrayList<Event>();
-		data.add(new Event(0, System.currentTimeMillis(), "最最最最最最最最最込込込込込込込"));
-		data.add(new Event(0, System.currentTimeMillis(), "最最最最最最最最最込込込込込込込11"));
-		data.add(new Event(0, System.currentTimeMillis(), "最最最最最最最最最込込込込込込込22"));
-		data.add(new Event(0, System.currentTimeMillis(), "最最最最最最最最最込込込込込込込33"));
-		data.add(new Event(0, System.currentTimeMillis(), "最最最最最最最最最込込込込込込込44"));
-		data.add(new Event(0, System.currentTimeMillis(), "最最最最最最最最最込込込込込込込55"));
-		data.add(new Event(0, System.currentTimeMillis(), "最最最最最最最最最込込込込込込込66"));
-
+		for (int i = 0; i < 20; i++) {
+			data.add(new Event(0, System.currentTimeMillis(),
+					"最最最最最最最最最込込込込込込込最最最最最最最最最込込込込込込込最最最最最最最最最"
+							+ "込込込込込込込最最最最最最最最最込込込込込込込最最最最最最最最最込込込込込込込最"
+							+ "最最最最最最最最込込込込込込込最最最最最最最最最込込込込込込込最最最最最最最最最"
+							+ "込込込込込込込最最最最最最最最最込込込込込込込最最最最最最最最最込込込込込込込最"
+							+ "最最最最最最最最込込込込込込込最最最最最最最最最込込込込込込込" + i));
+		}
 		SignHistoryAdapter adapter = new SignHistoryAdapter(getActivity());
 		adapter.setData(data);
 		mHistoryListView.setAdapter(adapter);
 		mHistoryListView.setDivider(null);
-		mHistoryListView.setEnabled(false);
 	}
 }

@@ -19,11 +19,17 @@ public class SignHistoryAdapter extends BaseAdapter {
 
 	public SignHistoryAdapter(Context context) {
 		mContext = context;
+		data = new ArrayList<Event>();
 	}
 	
 	public void setData(ArrayList<Event> data) {
 		this.data = data;
 		notifyDataSetChanged();
+	}
+	
+	@Override
+	public boolean isEnabled(int position) {
+		return false;
 	}
 	
 	@Override

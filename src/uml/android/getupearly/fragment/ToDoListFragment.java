@@ -1,12 +1,15 @@
 package uml.android.getupearly.fragment;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import uml.android.getupearly.BaseApplication;
+import uml.android.getupearly.Event;
 import uml.android.getupearly.R;
 import uml.android.getupearly.Tool;
 import uml.android.getupearly.ViewPager4SameItem.OnPageSelectedListener;
 import uml.android.getupearly.adapter.CalendarViewPager;
+import uml.android.getupearly.adapter.ToDoListAdapter;
 import uml.android.getupearly.template.BannerNoBackTemplate;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,6 +20,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +32,8 @@ public class ToDoListFragment extends Fragment {
 	private TextView mMonthNameTextView;
 	private OnPageSelectedListener mOnPageSelectedListener;
 	private LinearLayout monthTitleLayout;
+
+	private ListView mTodoListView;
 
 	public ToDoListFragment() {
 	}
@@ -48,6 +54,8 @@ public class ToDoListFragment extends Fragment {
 				.findViewById(R.id.tv_month_name);
 		monthTitleLayout = (LinearLayout) baseView
 				.findViewById(R.id.ll_month_title);
+		mTodoListView = (ListView) baseView.findViewById(R.id.lv_todo);
+
 		initView();
 		return baseView;
 	}
@@ -118,10 +126,27 @@ public class ToDoListFragment extends Fragment {
 				Calendar cal = (Calendar) v.getTag();
 				Toast.makeText(BaseApplication.getContext(), "Click",
 						Toast.LENGTH_SHORT).show();
-				// updateToDoList(cal);
+				updateToDoList(cal);
 			}
 		});
 
+		ToDoListAdapter adapter = new ToDoListAdapter(getActivity());
+		mTodoListView.setAdapter(adapter);
+	}
+
+	private void updateToDoList(Calendar cal) {
+		ArrayList<Event> data = new ArrayList<Event>();
+		for (int i = 0; i < 20; i++) {
+			data.add(new Event(0, System.currentTimeMillis(),
+					"最最最最最最最最最込込込込込込込最最最最最最最最最込込込込込込込最最最最最最最最最"
+							+ "込込込込込込込最最最最最最最最最込込込込込込込最最最最最最最最最込込込込込込込最"
+							+ "最最最最最最最最込込込込込込込最最最最最最最最最込込込込込込込最最最最最最最最最"
+							+ "込込込込込込込最最最最最最最最最込込込込込込込最最最最最最最最最込込込込込込込最"
+							+ "最最最最最最最最込込込込込込込最最最最最最最最最込込込込込込込" + i));
+		}
+
+		ToDoListAdapter adapter = (ToDoListAdapter) mTodoListView.getAdapter();
+		adapter.setData(data);
 	}
 
 	private String getWeekDayName(int index) {
