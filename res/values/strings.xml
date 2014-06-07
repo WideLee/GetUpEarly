@@ -32,5 +32,12 @@
     <string name="eleven">十一</string>
     <string name="twelve">十二</string>
     <string name="month">月</string>
+    <string name="colon">：</string>
+    <string name="semi">；</string>
+    <string name="weekday_name">星期</string>
+    <string name="uva">紫外线</string>
+    <string name="today_todo">今日日程</string>
+    <string name="get_fail">获取天气失败，请检查网络连接</string>
+    <string name="nothing">\?</string>
 
 </resources>

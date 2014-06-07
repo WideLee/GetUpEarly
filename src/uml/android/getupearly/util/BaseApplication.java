@@ -1,4 +1,4 @@
-package uml.android.getupearly;
+package uml.android.getupearly.util;
 
 import android.app.Application;
 import android.content.Context;

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 import uml.android.getupearly.Event;
 import uml.android.getupearly.R;
-import uml.android.getupearly.Tool;
 import uml.android.getupearly.adapter.SignHistoryAdapter;
 import uml.android.getupearly.template.BannerNoBackTemplate;
+import uml.android.getupearly.util.Tool;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;

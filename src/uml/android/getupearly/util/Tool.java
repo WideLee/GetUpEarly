@@ -1,4 +1,4 @@
-package uml.android.getupearly;
+package uml.android.getupearly.util;
 
 
 import java.io.ByteArrayOutputStream;
@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import uml.android.getupearly.R;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -451,4 +452,33 @@ public class Tool {
 		return baos.toString();
 	}
 
+	public static String getWeekDayName(int index) {
+		String weekdayName = new String();
+		switch (index) {
+		case 0:
+			weekdayName = getString(R.string._sunday);
+			break;
+		case 1:
+			weekdayName = getString(R.string._monday);
+			break;
+		case 2:
+			weekdayName = getString(R.string._tuesday);
+			break;
+		case 3:
+			weekdayName = getString(R.string._wednesday);
+			break;
+		case 4:
+			weekdayName = getString(R.string._thursday);
+			break;
+		case 5:
+			weekdayName = getString(R.string._friday);
+			break;
+		case 6:
+			weekdayName = getString(R.string._saturday);
+			break;
+		default:
+			break;
+		}
+		return weekdayName;
+	}
 }

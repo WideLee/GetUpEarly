@@ -3,14 +3,14 @@ package uml.android.getupearly.fragment;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import uml.android.getupearly.BaseApplication;
 import uml.android.getupearly.Event;
 import uml.android.getupearly.R;
-import uml.android.getupearly.Tool;
-import uml.android.getupearly.ViewPager4SameItem.OnPageSelectedListener;
 import uml.android.getupearly.adapter.CalendarViewPager;
 import uml.android.getupearly.adapter.ToDoListAdapter;
+import uml.android.getupearly.adapter.ViewPager4SameItem.OnPageSelectedListener;
 import uml.android.getupearly.template.BannerNoBackTemplate;
+import uml.android.getupearly.util.BaseApplication;
+import uml.android.getupearly.util.Tool;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
@@ -44,6 +44,8 @@ public class ToDoListFragment extends Fragment {
 		View main = inflater.inflate(R.layout.fragment_todo_list, null);
 		BannerNoBackTemplate template = new BannerNoBackTemplate(getActivity(),
 				"To Do List");
+		template.setRightBtnIc(R.drawable.ic_banner_more);
+		template.setRightBtnClickListener(null);
 		template.addView(main);
 		View baseView = template.getWholeView();
 		mCalendarViewPager = (CalendarViewPager) baseView
@@ -73,7 +75,7 @@ public class ToDoListFragment extends Fragment {
 			tv.setTextColor(getActivity().getResources().getColor(
 					R.color.divider_of_dialog));
 			tv.setTextSize(16);
-			tv.setText(getWeekDayName(j));
+			tv.setText(Tool.getWeekDayName(j));
 			LinearLayout.LayoutParams inner_params = new LinearLayout.LayoutParams(
 					Tool.getScreenW() / 8,
 					LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -148,35 +150,4 @@ public class ToDoListFragment extends Fragment {
 		ToDoListAdapter adapter = (ToDoListAdapter) mTodoListView.getAdapter();
 		adapter.setData(data);
 	}
-
-	private String getWeekDayName(int index) {
-		String weekdayName = new String();
-		switch (index) {
-		case 0:
-			weekdayName = getString(R.string._sunday);
-			break;
-		case 1:
-			weekdayName = getString(R.string._monday);
-			break;
-		case 2:
-			weekdayName = getString(R.string._tuesday);
-			break;
-		case 3:
-			weekdayName = getString(R.string._wednesday);
-			break;
-		case 4:
-			weekdayName = getString(R.string._thursday);
-			break;
-		case 5:
-			weekdayName = getString(R.string._friday);
-			break;
-		case 6:
-			weekdayName = getString(R.string._saturday);
-			break;
-		default:
-			break;
-		}
-		return weekdayName;
-	}
-
 }

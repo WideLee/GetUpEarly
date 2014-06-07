@@ -5,8 +5,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import uml.android.getupearly.R;
-import uml.android.getupearly.Tool;
-import uml.android.getupearly.ViewPager4SameItem;
+import uml.android.getupearly.util.Tool;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;

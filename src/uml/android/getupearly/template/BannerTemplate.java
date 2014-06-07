@@ -1,8 +1,8 @@
 package uml.android.getupearly.template;
 
-import uml.android.getupearly.BaseApplication;
 import uml.android.getupearly.R;
-import uml.android.getupearly.Tool;
+import uml.android.getupearly.util.BaseApplication;
+import uml.android.getupearly.util.Tool;
 import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;

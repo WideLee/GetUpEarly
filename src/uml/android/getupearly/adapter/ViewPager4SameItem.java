@@ -1,7 +1,10 @@
-package uml.android.getupearly;
+package uml.android.getupearly.adapter;
 
 import java.lang.ref.SoftReference;
 
+import uml.android.getupearly.R;
+import uml.android.getupearly.R.drawable;
+import uml.android.getupearly.util.Tool;
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
