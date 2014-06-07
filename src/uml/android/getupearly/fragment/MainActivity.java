@@ -1,5 +1,12 @@
-package uml.android.getupearly;
+package uml.android.getupearly.fragment;
 
+import uml.android.getupearly.R;
+import uml.android.getupearly.R.drawable;
+import uml.android.getupearly.R.id;
+import uml.android.getupearly.R.layout;
+import uml.android.getupearly.R.menu;
+import uml.android.getupearly.R.string;
+import uml.android.getupearly.util.Tool;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
@@ -22,10 +29,18 @@ public class MainActivity extends FragmentActivity {
 		mTabHost = (TabHost) findViewById(android.R.id.tabhost);
 		mTabWidget = (TabWidget) findViewById(android.R.id.tabs);
 		mTabHost.setup();
-		addTab("我的", R.drawable.ic_launcher, R.id.tab1);
-		addTab("我的12", R.drawable.ic_launcher, R.id.tab2);
-		addTab("我的23", R.drawable.ic_launcher, R.id.tab3);
-		addTab("我的42", R.drawable.ic_launcher, R.id.tab4);
+		addTab(Tool.getString(R.string.today_signin), R.drawable.ic_sign,
+				R.id.tab1);
+		addTab(Tool.getString(R.string.today_todo), R.drawable.ic_today_todo,
+				R.id.tab2);
+		addTab(Tool.getString(R.string.todo_list), R.drawable.ic_todo_list,
+				R.id.tab3);
+		addTab(Tool.getString(R.string.sign_history),
+				R.drawable.ic_sign_history, R.id.tab4);
+		for (int i = 0; i < 4; i++) {
+			mTabHost.getTabWidget().getChildAt(i)
+					.setBackgroundResource(R.drawable.selector_tab_background);
+		}
 	}
 
 	private void addTab(String label, int drawableId, int content) {

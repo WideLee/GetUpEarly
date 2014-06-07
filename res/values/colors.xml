@@ -3,8 +3,8 @@
 
     <color name="theme_color">#41c5b4</color>
     <color name="theme_bg">#FFFFFF</color>
-    <color name="theme_dark">#41c5b4</color>
-    <color name="theme_dark_pressed">#30ae9e</color>
+    <color name="theme_dark">#333333</color>
+    <color name="theme_dark_pressed">#222222</color>
     <color name="banner_bottom_line">#36895e</color>
     <color name="banner_top_line">#575453</color>
     <color name="transparent">#00000000</color>
@@ -52,5 +52,6 @@
     <color name="guide_3">#e56442</color>
     <color name="guide_4">#ffcf65</color>
     <color name="guide_5">#904967</color>
+    <color name="hotpink">#ff69b4</color>
 
 </resources>

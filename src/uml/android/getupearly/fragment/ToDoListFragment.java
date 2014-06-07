@@ -1,16 +1,20 @@
 package uml.android.getupearly.fragment;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
-import uml.android.getupearly.Event;
 import uml.android.getupearly.R;
 import uml.android.getupearly.adapter.CalendarViewPager;
 import uml.android.getupearly.adapter.ToDoListAdapter;
 import uml.android.getupearly.adapter.ViewPager4SameItem.OnPageSelectedListener;
 import uml.android.getupearly.template.BannerNoBackTemplate;
 import uml.android.getupearly.util.BaseApplication;
+import uml.android.getupearly.util.Event;
+import uml.android.getupearly.util.GetUpEarlyDB;
 import uml.android.getupearly.util.Tool;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
@@ -32,7 +36,7 @@ public class ToDoListFragment extends Fragment {
 	private TextView mMonthNameTextView;
 	private OnPageSelectedListener mOnPageSelectedListener;
 	private LinearLayout monthTitleLayout;
-
+	private GetUpEarlyDB mDB;
 	private ListView mTodoListView;
 
 	public ToDoListFragment() {
@@ -41,11 +45,20 @@ public class ToDoListFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		mDB = new GetUpEarlyDB(getActivity());
+
 		View main = inflater.inflate(R.layout.fragment_todo_list, null);
 		BannerNoBackTemplate template = new BannerNoBackTemplate(getActivity(),
-				"To Do List");
-		template.setRightBtnIc(R.drawable.ic_banner_more);
-		template.setRightBtnClickListener(null);
+				Tool.getString(R.string.todo_list));
+		template.setRightBtnIc(R.drawable.ic_banner_add);
+		template.setRightBtnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getActivity(), AddToDoActivity.class);
+				startActivity(intent);
+			}
+		});
 		template.addView(main);
 		View baseView = template.getWholeView();
 		mCalendarViewPager = (CalendarViewPager) baseView
@@ -133,21 +146,30 @@ public class ToDoListFragment extends Fragment {
 		});
 
 		ToDoListAdapter adapter = new ToDoListAdapter(getActivity());
+		List<Event> data = new ArrayList<Event>();
+		try {
+			data = mDB.getTodoEventByDate(Calendar.getInstance().getTime());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		adapter.setData(data);
 		mTodoListView.setAdapter(adapter);
 	}
 
 	private void updateToDoList(Calendar cal) {
-		ArrayList<Event> data = new ArrayList<Event>();
-		for (int i = 0; i < 20; i++) {
-			data.add(new Event(0, System.currentTimeMillis(),
-					"最最最最最最最最最込込込込込込込最最最最最最最最最込込込込込込込最最最最最最最最最"
-							+ "込込込込込込込最最最最最最最最最込込込込込込込最最最最最最最最最込込込込込込込最"
-							+ "最最最最最最最最込込込込込込込最最最最最最最最最込込込込込込込最最最最最最最最最"
-							+ "込込込込込込込最最最最最最最最最込込込込込込込最最最最最最最最最込込込込込込込最"
-							+ "最最最最最最最最込込込込込込込最最最最最最最最最込込込込込込込" + i));
+		List<Event> data = new ArrayList<Event>();
+		try {
+			data = mDB.getTodoEventByDate(cal.getTime());
+		} catch (ParseException e) {
+			e.printStackTrace();
 		}
-
 		ToDoListAdapter adapter = (ToDoListAdapter) mTodoListView.getAdapter();
 		adapter.setData(data);
+	}
+
+	@Override
+	public void onResume() {
+		initView();
+		super.onResume();
 	}
 }

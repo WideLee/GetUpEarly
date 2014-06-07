@@ -2,9 +2,10 @@ package uml.android.getupearly.adapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
-import uml.android.getupearly.Event;
 import uml.android.getupearly.R;
+import uml.android.getupearly.util.Event;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,7 @@ import android.widget.TextView;
 
 public class SignHistoryAdapter extends BaseAdapter {
 
-	private ArrayList<Event> data;
+	private List<Event> data;
 	private Context mContext;
 
 	public SignHistoryAdapter(Context context) {
@@ -22,7 +23,7 @@ public class SignHistoryAdapter extends BaseAdapter {
 		data = new ArrayList<Event>();
 	}
 	
-	public void setData(ArrayList<Event> data) {
+	public void setData(List<Event> data) {
 		this.data = data;
 		notifyDataSetChanged();
 	}

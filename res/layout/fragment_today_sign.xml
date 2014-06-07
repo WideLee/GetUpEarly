@@ -1,15 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?>  
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  
-    android:layout_width="match_parent"  
-    android:layout_height="match_parent"  
-    android:layout_gravity="center"   
-    android:gravity="center">  
-  
-    <TextView   
-        android:id="@+id/tabText"  
-        android:layout_width="wrap_content"  
-        android:layout_height="wrap_content"  
-        android:focusable="true"  
-        android:drawableTop="@drawable/ic_launcher"  
-        android:textColor="#000000"/>  
-</LinearLayout>  
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <Button
+        android:id="@+id/btn_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="5dp"
+        android:text="@string/ok"
+        android:visibility="invisible" />
+
+    <EditText
+        android:id="@+id/inputbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@id/btn_ok"
+        android:autoText="false"
+        android:background="@drawable/bg_common_edittext"
+        android:capitalize="none"
+        android:ems="10"
+        android:gravity="fill_horizontal"
+        android:scrollHorizontally="true"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/imageview_button"
+        android:layout_width="233dp"
+        android:layout_height="233dp"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:src="@drawable/signbutton1" />
+
+    <TextView
+        android:id="@+id/inputtips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/inputbox"
+        android:layout_alignParentLeft="true"
+        android:gravity="left"
+        android:text="@string/say_something"
+        android:textColor="@color/hotpink"
+        android:visibility="invisible" />
+
+</RelativeLayout>

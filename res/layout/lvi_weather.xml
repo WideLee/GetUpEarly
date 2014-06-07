@@ -1,6 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="20dp"
     android:alpha="0.56"
     android:background="@color/white"
     android:paddingBottom="16dp"
@@ -13,7 +16,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="20dp"
-        android:text="广州"
         android:textColor="@color/black"
         android:textSize="15sp" />
 
@@ -24,7 +26,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight="20dp"
-        android:text="6月3日 星期一"
         android:textColor="@color/black"
         android:textSize="15sp" />
 
@@ -35,7 +36,6 @@
         android:layout_alignRight="@id/tv_date"
         android:layout_below="@id/tv_date"
         android:layout_marginTop="15dp"
-        android:text="雷阵雨转多云"
         android:textColor="@color/black"
         android:textSize="18sp" />
 
@@ -46,7 +46,6 @@
         android:layout_alignRight="@id/tv_date"
         android:layout_below="@id/tv_overview"
         android:layout_marginTop="15dp"
-        android:text="紫外线弱"
         android:textColor="@color/black"
         android:textSize="18sp" />
 
@@ -57,7 +56,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
-        android:text="15°C"
         android:textColor="@color/black"
         android:textSize="30sp" />
 
@@ -68,6 +66,7 @@
         android:layout_alignBottom="@id/tv_uva"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="20dp"
+        android:contentDescription="@string/statistics"
         android:src="@drawable/weather_a_01" />
 
 </RelativeLayout>

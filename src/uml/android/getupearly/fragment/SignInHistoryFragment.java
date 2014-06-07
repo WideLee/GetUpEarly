@@ -1,11 +1,14 @@
 package uml.android.getupearly.fragment;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.List;
 
-import uml.android.getupearly.Event;
 import uml.android.getupearly.R;
 import uml.android.getupearly.adapter.SignHistoryAdapter;
 import uml.android.getupearly.template.BannerNoBackTemplate;
+import uml.android.getupearly.util.Event;
+import uml.android.getupearly.util.GetUpEarlyDB;
 import uml.android.getupearly.util.Tool;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,6 +22,7 @@ public class SignInHistoryFragment extends Fragment {
 
 	private TextView mSignTextView;
 	private ListView mHistoryListView;
+	private GetUpEarlyDB mDB;
 
 	public SignInHistoryFragment() {
 	}
@@ -26,6 +30,8 @@ public class SignInHistoryFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		mDB = new GetUpEarlyDB(getActivity());
+
 		View main = inflater.inflate(R.layout.fragment_sign_history, null);
 		BannerNoBackTemplate template = new BannerNoBackTemplate(getActivity(),
 				Tool.getString(R.string.sign_history));
@@ -38,15 +44,25 @@ public class SignInHistoryFragment extends Fragment {
 		return baseView;
 	}
 
+	@Override
+	public void onResume() {
+		List<Event> data = new ArrayList<Event>();
+		try {
+			data = mDB.getALLSignInEvent();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		((SignHistoryAdapter) mHistoryListView.getAdapter()).setData(data);
+		System.out.println("SignOnResume");
+		super.onResume();
+	}
+
 	private void initView() {
-		ArrayList<Event> data = new ArrayList<Event>();
-		for (int i = 0; i < 20; i++) {
-			data.add(new Event(0, System.currentTimeMillis(),
-					"最最最最最最最最最込込込込込込込最最最最最最最最最込込込込込込込最最最最最最最最最"
-							+ "込込込込込込込最最最最最最最最最込込込込込込込最最最最最最最最最込込込込込込込最"
-							+ "最最最最最最最最込込込込込込込最最最最最最最最最込込込込込込込最最最最最最最最最"
-							+ "込込込込込込込最最最最最最最最最込込込込込込込最最最最最最最最最込込込込込込込最"
-							+ "最最最最最最最最込込込込込込込最最最最最最最最最込込込込込込込" + i));
+		List<Event> data = new ArrayList<Event>();
+		try {
+			data = mDB.getALLSignInEvent();
+		} catch (ParseException e) {
+			e.printStackTrace();
 		}
 		SignHistoryAdapter adapter = new SignHistoryAdapter(getActivity());
 		adapter.setData(data);

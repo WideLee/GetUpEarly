@@ -1,12 +1,15 @@
 package uml.android.getupearly.fragment;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
-import uml.android.getupearly.Event;
 import uml.android.getupearly.R;
-import uml.android.getupearly.R.string;
 import uml.android.getupearly.adapter.ToDoListAdapter;
 import uml.android.getupearly.template.BannerNoBackTemplate;
+import uml.android.getupearly.util.Event;
+import uml.android.getupearly.util.GetUpEarlyDB;
 import uml.android.getupearly.util.HiThread;
 import uml.android.getupearly.util.Tool;
 import uml.android.getupearly.util.Weather;
@@ -35,6 +38,7 @@ public class TodayToDoFragment extends Fragment {
 	private TextView mTemperaTextView;
 	private ImageView mWeatherIcon;
 	private Handler mHandler;
+	private GetUpEarlyDB mDB;
 
 	private HiThread mThread = new HiThread() {
 
@@ -91,6 +95,8 @@ public class TodayToDoFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		mDB = new GetUpEarlyDB(getActivity());
+
 		View main = inflater.inflate(R.layout.fragment_today_todo, null);
 		BannerNoBackTemplate template = new BannerNoBackTemplate(getActivity(),
 				Tool.getString(R.string.today_todo));
@@ -106,6 +112,7 @@ public class TodayToDoFragment extends Fragment {
 		mWeatherIcon = (ImageView) baseView.findViewById(R.id.tv_weather_icon);
 
 		initView();
+		mThread.start();
 		return baseView;
 	}
 
@@ -116,22 +123,25 @@ public class TodayToDoFragment extends Fragment {
 		mOverviewTextView.setText(weather.getOverView());
 		mUVATextView.setText(weather.getUva());
 		mTemperaTextView.setText(weather.getTemperature());
-		int res = Integer.parseInt(weather.getWeatherDrawable().split("\\.")[0]);
+		int res = Integer
+				.parseInt(weather.getWeatherDrawable().split("\\.")[0]);
 		mWeatherIcon.setImageResource(R.drawable.weather_a_00 + res);
 
 		ToDoListAdapter adapter = new ToDoListAdapter(getActivity());
 		ArrayList<Event> data = new ArrayList<Event>();
-		for (int i = 0; i < 20; i++) {
-			data.add(new Event(0, System.currentTimeMillis(),
-					"最最最最最最最最最込込込込込込込最最最最最最最最最込込込込込込込最最最最最最最最最"
-							+ "込込込込込込込最最最最最最最最最込込込込込込込最最最最最最最最最込込込込込込込最"
-							+ "最最最最最最最最込込込込込込込最最最最最最最最最込込込込込込込最最最最最最最最最"
-							+ "込込込込込込込最最最最最最最最最込込込込込込込最最最最最最最最最込込込込込込込最"
-							+ "最最最最最最最最込込込込込込込最最最最最最最最最込込込込込込込" + i));
-		}
 		adapter.setData(data);
 		mTodoListView.setAdapter(adapter);
-		
-		mThread.start();
+	}
+
+	@Override
+	public void onResume() {
+		List<Event> data = new ArrayList<Event>();
+		try {
+			data = mDB.getTodoEventByDate(Calendar.getInstance().getTime());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		((ToDoListAdapter) mTodoListView.getAdapter()).setData(data);
+		super.onResume();
 	}
 }

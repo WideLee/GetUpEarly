@@ -1,4 +1,4 @@
-package uml.android.getupearly;
+package uml.android.getupearly.util;
 
 public class Event {
 	public static final int NOT_IMPLEMENT = -1;
