@@ -149,6 +149,7 @@ public class TodaySignInFragment extends Fragment {
 					m_textView.setVisibility(View.INVISIBLE);
 					m_editText.setVisibility(View.INVISIBLE);
 					mOKButton.setVisibility(View.INVISIBLE);
+					Tool.hideKeyBoard(getView());
 				}
 			}
 		});
